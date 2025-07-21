@@ -7,6 +7,10 @@ module.exports = {
         primary: "var(--color-primary)",
         title: "var(--title-color)",
         text: "var(--text-color)",
+        border:"var(--border-color)",
+      },
+      fontFamily: {
+        sans: ["var(--font-raleway)", "sans-serif"],
       },
       screens: {
         sm: "640px", // Small devices (phones)
