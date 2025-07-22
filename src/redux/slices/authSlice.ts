@@ -67,11 +67,16 @@ const authSlice = createSlice({
           expires: 1 / 24,
           secure: process.env.NODE_ENV === "production",
           sameSite: "strict",
+          httpOnly: false,
+          path: "/",
         });
       })
       .addCase(loginThunk.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload || "Login failed";
+        state.isAuthenticated = false; 
+        state.accessToken = null; 
+        state.user = null; 
+        state.error = action.payload || action.error?.message || "Login failed";
       });
 
     // REGISTER
