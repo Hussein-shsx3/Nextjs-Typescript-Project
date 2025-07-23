@@ -16,8 +16,15 @@ export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
   const token = req.cookies.get("accessToken")?.value;
 
-  const isProfileRoute = url.pathname.startsWith("/profile");
-  const isAdminRoute = url.pathname.startsWith("/admin");
+  const pathname = url.pathname;
+
+  const isProfileRoute = pathname.startsWith("/profile");
+  const isAdminRoute = pathname.startsWith("/admin");
+
+  const isAuthPage =
+    pathname === "/login" ||
+    pathname === "/signup" ||
+    pathname === "/forgot-password";
 
   if (!token && (isProfileRoute || isAdminRoute)) {
     url.pathname = "/login";
@@ -42,11 +49,22 @@ export function middleware(req: NextRequest) {
       url.pathname = "/unauthorized";
       return NextResponse.redirect(url);
     }
+
+    // if (isAuthPage) {
+    //   url.pathname = "/";
+    //   return NextResponse.redirect(url);
+    // }
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/profile/:path*", "/admin/:path*"], 
+  matcher: [
+    "/profile/:path*",
+    "/admin/:path*",
+    "/login",
+    "/signup",
+    "/forgot-password",
+  ],
 };

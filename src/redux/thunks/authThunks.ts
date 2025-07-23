@@ -15,8 +15,8 @@ import { getErrorMessage } from "../../lib/axios";
 // REGISTER USER
 // ========================
 export const registerThunk = createAsyncThunk<
-  { success: boolean; message: string }, // Return type
-  RegisterData, // Input type
+  ApiMessage, 
+  RegisterData, 
   { rejectValue: string }
 >("auth/register", async (data, { rejectWithValue }) => {
   try {
