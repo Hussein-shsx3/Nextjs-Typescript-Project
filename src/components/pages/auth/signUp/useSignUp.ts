@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { registerThunk } from "@/redux/thunks/authThunks";
+import { clearAuthMessages } from "@/redux/slices/authSlice";
 
 export const useSignUp = () => {
   const dispatch = useAppDispatch();
@@ -13,6 +14,10 @@ export const useSignUp = () => {
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    dispatch(clearAuthMessages());
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;

@@ -1,4 +1,3 @@
-// src/redux/slices/authSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 import {
@@ -13,7 +12,6 @@ import {
 } from "../thunks/authThunks";
 import { IUser, AuthState } from "@/types/auth.types";
 
-// Initialize state from cookie if exists
 const initialAccessToken =
   typeof window !== "undefined" ? Cookies.get("accessToken") || null : null;
 
@@ -30,13 +28,11 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    // Manually set user (e.g., after fetching profile)
     setUser(state, action: PayloadAction<IUser>) {
       state.user = action.payload;
       state.isAuthenticated = true;
     },
 
-    // Clear state manually (optional)
     resetAuthState(state) {
       state.user = null;
       state.accessToken = null;
@@ -45,6 +41,11 @@ const authSlice = createSlice({
       state.error = null;
       state.message = null;
       Cookies.remove("accessToken");
+    },
+
+    clearAuthMessages(state) {
+      state.message = null;
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
@@ -73,9 +74,9 @@ const authSlice = createSlice({
       })
       .addCase(loginThunk.rejected, (state, action) => {
         state.loading = false;
-        state.isAuthenticated = false; 
-        state.accessToken = null; 
-        state.user = null; 
+        state.isAuthenticated = false;
+        state.accessToken = null;
+        state.user = null;
         state.error = action.payload || action.error?.message || "Login failed";
       });
 
@@ -201,7 +202,7 @@ const authSlice = createSlice({
 });
 
 // Export actions
-export const { setUser, resetAuthState } = authSlice.actions;
+export const { setUser, resetAuthState, clearAuthMessages } = authSlice.actions;
 
 // Export reducer
 export default authSlice.reducer;

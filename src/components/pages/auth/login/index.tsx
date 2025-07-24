@@ -62,7 +62,7 @@ const Login = () => {
 
         <div className="flex flex-row justify-center items-center mt-6 text-sm">
           <Text size="sm">Don't have an account?</Text>
-          <Link href="/signUp" className="hover:text-primary uppercase mx-2">
+          <Link href="/signup" className="hover:text-primary uppercase mx-2">
             Sign Up
           </Link>
         </div>
