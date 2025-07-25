@@ -1,14 +1,15 @@
 "use client";
 
+import Container from "@/components/layout/Container";
 import { useVerifyEmail } from "./useVerifyEmail";
 import AlertMessage from "@/components/ui/feedback/AlertMessage";
 
 export const VerifyEmail = () => {
-  const { loading, message, error } = useVerifyEmail(true); 
+  const { loading, message, error } = useVerifyEmail(true);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
-      <div className="rounded-lg p-8 shadow-md bg-white text-center w-[400px]">
+    <Container className="items-center justify-center">
+      <div className="w-full max-w-xl rounded-lg p-8 shadow-md bg-white">
         {/* Loading State */}
         {loading && (
           <AlertMessage
@@ -37,6 +38,6 @@ export const VerifyEmail = () => {
           </>
         )}
       </div>
-    </div>
+    </Container>
   );
 };
