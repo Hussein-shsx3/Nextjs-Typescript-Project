@@ -16,6 +16,7 @@ export interface ForgotPasswordData {
 export interface ResetPasswordData {
   token: string;
   newPassword: string;
+  confirmPassword: string;
 }
 
 export interface VerifyEmailParams {

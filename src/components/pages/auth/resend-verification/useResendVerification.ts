@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { forgotPasswordThunk } from "@/redux/thunks/authThunks";
+import { resendVerificationThunk } from "@/redux/thunks/authThunks";
 import { clearAuthMessages } from "@/redux/slices/authSlice";
 
-export const useForgotPassword = () => {
+const UseResendVerification = () => {
   const [email, setEmail] = useState("");
 
   const dispatch = useAppDispatch();
@@ -14,7 +14,7 @@ export const useForgotPassword = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    dispatch(forgotPasswordThunk({ email }));
+    dispatch(resendVerificationThunk(email));
   };
 
   useEffect(() => {
@@ -24,9 +24,11 @@ export const useForgotPassword = () => {
   return {
     email,
     setEmail,
+    handleSubmit,
     loading,
     message,
     error,
-    handleSubmit,
   };
 };
+
+export default UseResendVerification;

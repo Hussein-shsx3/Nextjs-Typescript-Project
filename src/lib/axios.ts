@@ -77,7 +77,7 @@ axiosInstance.interceptors.response.use(
 
         const { accessToken } = response.data;
         Cookies.set("accessToken", accessToken, {
-          expires: 1 / 24,
+          expires: 7,
           secure: process.env.NODE_ENV === "production",
           sameSite: "strict",
         });
@@ -149,7 +149,7 @@ export const api = {
 
 export const getErrorMessage = (error: any): string => {
   if (error.response?.data?.error?.message) {
-    return error.response.data.error.message; 
+    return error.response.data.error.message;
   }
   if (error.message) {
     return error.message;

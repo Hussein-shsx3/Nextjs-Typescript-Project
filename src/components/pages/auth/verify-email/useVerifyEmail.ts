@@ -21,6 +21,10 @@ export const useVerifyEmail = (autoRedirect: boolean = true) => {
   }, [dispatch, token]);
 
   useEffect(() => {
+    dispatch(clearAuthMessages());
+  }, []);
+
+  useEffect(() => {
     if (autoRedirect && message) {
       const timer = setTimeout(() => {
         router.push("/login");

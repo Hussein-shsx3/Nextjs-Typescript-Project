@@ -4,12 +4,13 @@ import React, { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { registerThunk } from "@/redux/thunks/authThunks";
 import { clearAuthMessages } from "@/redux/slices/authSlice";
+import { RegisterData } from "@/types/auth.types";
 
 export const useSignUp = () => {
   const dispatch = useAppDispatch();
   const { loading, message, error } = useAppSelector((state) => state.auth);
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<RegisterData>({
     name: "",
     email: "",
     password: "",

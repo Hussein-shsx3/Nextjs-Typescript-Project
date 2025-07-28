@@ -65,7 +65,7 @@ const authSlice = createSlice({
         state.isAuthenticated = true;
 
         Cookies.set("accessToken", action.payload.accessToken, {
-          expires: 1 / 24,
+          expires: 7,
           secure: process.env.NODE_ENV === "production",
           sameSite: "strict",
           httpOnly: false,

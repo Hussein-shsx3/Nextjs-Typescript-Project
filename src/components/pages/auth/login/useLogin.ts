@@ -1,34 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { loginThunk } from "@/redux/thunks/authThunks";
 import { clearAuthMessages } from "@/redux/slices/authSlice";
-
-interface LoginFormData {
-  email: string;
-  password: string;
-}
+import { LoginCredentials } from "@/types/auth.types";
 
 export const useLogin = () => {
   const dispatch = useAppDispatch();
-  const router = useRouter();
 
-  const { loading, error, isAuthenticated, message } = useAppSelector(
-    (state) => state.auth
-  );
+  const { loading, error, message } = useAppSelector((state) => state.auth);
 
-  const [formData, setFormData] = useState<LoginFormData>({
+  const [formData, setFormData] = useState<LoginCredentials>({
     email: "",
     password: "",
   });
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      router.push("/profile");
-    }
-  }, [isAuthenticated, router]);
 
   useEffect(() => {
     dispatch(clearAuthMessages());

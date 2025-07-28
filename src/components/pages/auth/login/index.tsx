@@ -10,8 +10,14 @@ import { useLogin } from "./useLogin";
 import AlertMessage from "@/components/ui/feedback/AlertMessage";
 
 const Login = () => {
-  const { formData, handleChange, handleSubmit, loading, error, message } =
-    useLogin();
+  const {
+    formData,
+    handleChange,
+    handleSubmit,
+    loading,
+    error,
+    message,
+  } = useLogin();
 
   return (
     <Container className="items-center justify-center">
@@ -41,7 +47,7 @@ const Login = () => {
         />
 
         <Link
-          href="/forget-password"
+          href="/forgot-password"
           className="text-sm text-right hover:text-primary"
         >
           Forgot Password?

@@ -11,7 +11,6 @@ function decodeJWT(token: string): any | null {
     return null;
   }
 }
-
 export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
   const token = req.cookies.get("accessToken")?.value;
@@ -20,11 +19,11 @@ export function middleware(req: NextRequest) {
 
   const isProfileRoute = pathname.startsWith("/profile");
   const isAdminRoute = pathname.startsWith("/admin");
-
   const isAuthPage =
     pathname === "/login" ||
     pathname === "/signup" ||
-    pathname === "/forgot-password";
+    pathname === "/forgot-password" ||
+    pathname === "/reset-password";
 
   if (!token && (isProfileRoute || isAdminRoute)) {
     url.pathname = "/login";
@@ -40,20 +39,20 @@ export function middleware(req: NextRequest) {
     }
 
     const isExpired = decoded.exp && Date.now() >= decoded.exp * 1000;
+
     if (isExpired) {
-      url.pathname = "/login";
-      return NextResponse.redirect(url);
+      return NextResponse.next();
     }
 
     if (isAdminRoute && decoded.role !== "admin") {
-      url.pathname = "/unauthorized";
+      url.pathname = "/not-found";
       return NextResponse.redirect(url);
     }
 
-    // if (isAuthPage) {
-    //   url.pathname = "/";
-    //   return NextResponse.redirect(url);
-    // }
+    if (isAuthPage) {
+      url.pathname = "/admin";
+      return NextResponse.redirect(url);
+    }
   }
 
   return NextResponse.next();
