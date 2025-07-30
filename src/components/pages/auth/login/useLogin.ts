@@ -5,8 +5,10 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { loginThunk } from "@/redux/thunks/authThunks";
 import { clearAuthMessages } from "@/redux/slices/authSlice";
 import { LoginCredentials } from "@/types/auth.types";
+import { useRouter } from "next/navigation";
 
 export const useLogin = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const { loading, error, message } = useAppSelector((state) => state.auth);
@@ -30,8 +32,11 @@ export const useLogin = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const resultAction = await dispatch(loginThunk(formData));
 
-    await dispatch(loginThunk(formData));
+    if (loginThunk.fulfilled.match(resultAction)) {
+      router.push("/");
+    }
   };
 
   return {

@@ -101,12 +101,12 @@ const authSlice = createSlice({
       .addCase(logoutThunk.pending, (state) => {
         state.loading = true;
       })
-      .addCase(logoutThunk.fulfilled, (state) => {
+      .addCase(logoutThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.user = null;
         state.accessToken = null;
         state.isAuthenticated = false;
-        state.message = "Logged out successfully";
+        state.message = action.payload.message;
 
         Cookies.remove("accessToken");
       })
@@ -124,7 +124,7 @@ const authSlice = createSlice({
       })
       .addCase(forgotPasswordThunk.fulfilled, (state, action) => {
         state.loading = false;
-        state.message = action.payload.message; // "Reset link sent"
+        state.message = action.payload.message; 
       })
       .addCase(forgotPasswordThunk.rejected, (state, action) => {
         state.loading = false;
@@ -140,7 +140,7 @@ const authSlice = createSlice({
       })
       .addCase(resetPasswordThunk.fulfilled, (state, action) => {
         state.loading = false;
-        state.message = action.payload.message; // "Password reset successfully"
+        state.message = action.payload.message;
       })
       .addCase(resetPasswordThunk.rejected, (state, action) => {
         state.loading = false;
@@ -156,7 +156,7 @@ const authSlice = createSlice({
       })
       .addCase(verifyEmailThunk.fulfilled, (state, action) => {
         state.loading = false;
-        state.message = action.payload.message; // "Email verified successfully"
+        state.message = action.payload.message;
       })
       .addCase(verifyEmailThunk.rejected, (state, action) => {
         state.loading = false;
@@ -172,7 +172,7 @@ const authSlice = createSlice({
       })
       .addCase(resendVerificationThunk.fulfilled, (state, action) => {
         state.loading = false;
-        state.message = action.payload.message; // "Verification email resent"
+        state.message = action.payload.message; 
       })
       .addCase(resendVerificationThunk.rejected, (state, action) => {
         state.loading = false;
@@ -201,8 +201,6 @@ const authSlice = createSlice({
   },
 });
 
-// Export actions
 export const { setUser, resetAuthState, clearAuthMessages } = authSlice.actions;
 
-// Export reducer
 export default authSlice.reducer;

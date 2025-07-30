@@ -23,7 +23,8 @@ export function middleware(req: NextRequest) {
     pathname === "/login" ||
     pathname === "/signup" ||
     pathname === "/forgot-password" ||
-    pathname === "/reset-password";
+    pathname === "/reset-password" ||
+    pathname === "/verify-email";
 
   if (!token && (isProfileRoute || isAdminRoute)) {
     url.pathname = "/login";
@@ -50,7 +51,7 @@ export function middleware(req: NextRequest) {
     }
 
     if (isAuthPage) {
-      url.pathname = "/admin";
+      url.pathname = "/";
       return NextResponse.redirect(url);
     }
   }

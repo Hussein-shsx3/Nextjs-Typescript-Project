@@ -145,6 +145,11 @@ export const api = {
     config?: AxiosRequestConfig
   ): Promise<AxiosResponse<ApiResponse<T>>> =>
     axiosInstance.delete(url, config),
+
+  getRaw: <T = any>(
+    url: string,
+    config?: AxiosRequestConfig
+  ): Promise<AxiosResponse<T>> => axiosInstance.get(url, config),
 };
 
 export const getErrorMessage = (error: any): string => {

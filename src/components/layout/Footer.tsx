@@ -1,8 +1,8 @@
-import { Heading } from "../typography/Heading";
+import { Heading } from "../ui/typography/Heading";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="py-5">
       <Heading as="h1" size="xl" align="center">
         Footer
       </Heading>
