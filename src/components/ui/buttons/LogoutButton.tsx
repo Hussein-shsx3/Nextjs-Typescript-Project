@@ -1,7 +1,7 @@
 "use client";
 
-import { useAppDispatch } from "@/redux/hooks";
-import { logoutThunk } from "@/redux/thunks/authThunks";
+import { useAppDispatch } from "@/store/hooks";
+import { logoutThunk } from "@/store/thunks/authThunks";
 import Button from "./Button";
 
 const LogoutButton = () => {

@@ -2,9 +2,9 @@
 
 import { useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { verifyEmailThunk } from "@/redux/thunks/authThunks";
-import { clearAuthMessages } from "@/redux/slices/authSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { verifyEmailThunk } from "@/store/thunks/authThunks";
+import { clearAuthMessages } from "@/store/slices/authSlice";
 
 export const useVerifyEmail = (autoRedirect: boolean = true) => {
   const searchParams = useSearchParams();

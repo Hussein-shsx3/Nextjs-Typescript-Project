@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { registerThunk } from "@/redux/thunks/authThunks";
-import { clearAuthMessages } from "@/redux/slices/authSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { registerThunk } from "@/store/thunks/authThunks";
+import { clearAuthMessages } from "@/store/slices/authSlice";
 import { RegisterData } from "@/types/auth.types";
 
 export const useSignUp = () => {

@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { resetPasswordThunk } from "@/redux/thunks/authThunks";
-import { clearAuthMessages } from "@/redux/slices/authSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { resetPasswordThunk } from "@/store/thunks/authThunks";
+import { clearAuthMessages } from "@/store/slices/authSlice";
 import { ResetPasswordData } from "@/types/auth.types";
 
 export const useResetPassword = () => {

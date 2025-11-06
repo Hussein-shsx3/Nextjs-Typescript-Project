@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { loginThunk } from "@/redux/thunks/authThunks";
-import { clearAuthMessages } from "@/redux/slices/authSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { loginThunk } from "@/store/thunks/authThunks";
+import { clearAuthMessages } from "@/store/slices/authSlice";
 import { LoginCredentials } from "@/types/auth.types";
 import { useRouter } from "next/navigation";
 

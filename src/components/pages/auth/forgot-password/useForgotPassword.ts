@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { forgotPasswordThunk } from "@/redux/thunks/authThunks";
-import { clearAuthMessages } from "@/redux/slices/authSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { forgotPasswordThunk } from "@/store/thunks/authThunks";
+import { clearAuthMessages } from "@/store/slices/authSlice";
 
 export const useForgotPassword = () => {
   const [email, setEmail] = useState("");
